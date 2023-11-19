@@ -82,7 +82,7 @@ sudo systemctl start fauxmo
  - The example device should already be added to `fauxmo/config.json`, for any additional devices you can copy and modify(on_cmd, off_cmd, name) this json example:
  ```json
     {
-        "port": 12340,
+        "port": 12341,
         "on_cmd": "http://127.0.0.1:9999/devices/DEVICE_FILENAME",
         "off_cmd": "http://127.0.0.1:9999/devices/DEVICE_FILENAME",
         "on_data": "{\"isOn\": 1}",
@@ -92,6 +92,14 @@ sudo systemctl start fauxmo
         "use_fake_state": true
     }
  ```
+!! Make sure to add 1 to the `port` section for each device, for example
+
+Device 1: Port 12340
+
+Device 2: Port 12341
+
+Device 3: Port 12342
+
 ### Compile windows binary (CLIENT PC)
 - Download the `windows-binary` folder to your windows PC
 
