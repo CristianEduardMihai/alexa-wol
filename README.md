@@ -92,7 +92,7 @@ sudo systemctl start fauxmo
         "use_fake_state": true
     }
  ```
-### Compile windows binary
+### Compile windows binary (CLIENT PC)
 - Download the `windows-binary` folder to your windows PC
 
 - Download [rust](https://www.rust-lang.org/tools/install)
@@ -106,3 +106,58 @@ rustc --target=x86_64-pc-windows-msvc --edition=2021 -o alexa_shutdown.exe shutd
 - Open the windows run menu and type `shell:startup`
 
 - Place the compiled `alexa_shutdown.exe` in the folder
+
+### Setup linux service (CLIENT PC)
+- Download the `shutdown.py` file from the `linux-service` folder. Place it in a location you can remember
+
+- Set your shutdown security key on the first line
+
+- Install python packages (yes it should run as root)
+```bash
+sudo pip3 install sockets
+```
+
+- Create systemd services
+
+Make sure to replace PATH with the location of your file.
+```bash
+printf "Description=Running alexa-shutdown on boot
+
+[Service]
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStart=/bin/bash -c 'python3 -u PATH/shutdown.py'
+WorkingDirectory=PATH
+Restart=always
+User=root
+[Install]
+WantedBy=multi-user.target" > /lib/systemd/system/alexa-shutdown.service
+```
+
+- Enable and start services
+
+```bash
+sudo systemctl enable alexa-shutdown
+sudo systemctl start alexa-shutdown
+```
+
+
+### Add your devices to alexa
+After configuring everything, please restart your services
+```bash
+sudo systemctl restart api
+sudo systemctl restart fauxmo
+```
+
+The, simply say
+`Alexa, discover devices`
+
+Alexa should respons with
+```
+Starting discovery,
+...
+```
+
+After about a minute, alexa should say
+```
+I have found and connected X new devices
+```
