@@ -11,7 +11,7 @@ Based on [fauxmo](https://github.com/n8henrie/fauxmo)
 - Clone this repo to your home server
 
 ```bash
-git clone asdasd
+git clone https://github.com/CristianEduardMihai/alexa-wol
 ```
 
 - Install API requirements using pip
