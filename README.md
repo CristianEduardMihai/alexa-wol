@@ -1,9 +1,9 @@
-# ALEXA-WAKE-ON-LAN
+# Alexa-Wake-On-Lan
 ## A server program that allows you to turn computers on/off using Alexa services by emulating wemo devices
 Based on [fauxmo](https://github.com/n8henrie/fauxmo)
 
 ### Requirements:
-- At least one computer capable WOL
+- At least one computer capable of WOL
 - A home server (could be a raspberry pi) running 24/7
 - An amazon echo device
 
