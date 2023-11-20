@@ -10,7 +10,6 @@ app = FastAPI()
 async def config_update(config_data: Request):
     body = await config_data.body()
     body = json.loads(body)
-    print(body)
     try:
         update_config(body)
     except Exception as e:

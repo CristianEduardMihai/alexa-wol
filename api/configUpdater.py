@@ -32,7 +32,6 @@ def generate_fauxmo_config(config):
 
 def update_config(dict):
     print("Updating config...")
-    print(dict)
     with open(f"{base_folder}/config.json", "w") as f:
         json.dump(dict, f, indent=4)
     # get fauxmo config
@@ -41,19 +40,10 @@ def update_config(dict):
     # write to fauxmo config. The config file is located one folder up from the api folder, in the fauxmo folder
     with open(f"{base_folder.parent}/famuxo/config.json", "w") as f:
         json.dump(fauxmo_config, f, indent=4)
-
-
-    # using config.json, generate fauxmo config
-    fauxmo_config = {
-        "FAUXMO": {
-            "ip_address": "auto"
-        },
-        "PLUGINS": {
-            "SimpleHTTPPlugin": {
-                "DEVICES": []
-            }
-        }
-    }
+    
+    # Restart systemd services
+    import os
+    os.system("sudo systemctl restart fauxmo.service && sudo systemctl restart api.service")
 
 def get_config():
     with open(f"{base_folder}/config.json") as f:
