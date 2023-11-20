@@ -2,8 +2,29 @@ from fastapi import FastAPI, HTTPException, Request
 import uvicorn
 import json
 from requestsHandler import requestsHandler
+from configUpdater import update_config, get_config
 
 app = FastAPI()
+
+@app.put("/update_config")
+async def update_config(config_data: Request):
+    body = await config_data.body()
+    body = json.loads(body)
+    print(body)
+    try:
+        update_config(body)
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="Error updating config")
+
+@app.get("/get_config")
+async def get_config():
+    try:
+        config = get_config()
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="Error getting config")
+    return config
 
 @app.put("/devices/{device_name}")
 async def update_switch(device_name: str, switch_data: Request):

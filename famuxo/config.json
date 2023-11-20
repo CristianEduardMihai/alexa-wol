@@ -7,8 +7,8 @@
             "DEVICES": [
                 {
                     "port": 12340,
-                    "on_cmd": "http://127.0.0.1:9999/devices/computer_example",
-                    "off_cmd": "http://127.0.0.1:9999/devices/computer_example",
+                    "on_cmd": "http://127.0.0.1:9999/devices/device1",
+                    "off_cmd": "http://127.0.0.1:9999/devices/device1",
                     "on_data": "{\"isOn\": 1}",
                     "off_data": "{\"isOn\": 0}",
                     "method": "PUT",
