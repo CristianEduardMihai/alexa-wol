@@ -7,7 +7,7 @@ from configUpdater import update_config, get_config
 app = FastAPI()
 
 @app.put("/update_config")
-async def update_config(config_data: Request):
+async def config_update(config_data: Request):
     body = await config_data.body()
     body = json.loads(body)
     print(body)
@@ -18,7 +18,7 @@ async def update_config(config_data: Request):
         raise HTTPException(status_code=500, detail="Error updating config")
 
 @app.get("/get_config")
-async def get_config():
+async def config_get():
     try:
         config = get_config()
     except Exception as e:
