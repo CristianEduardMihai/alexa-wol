@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import RedirectResponse 
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 import json
 from requestsHandler import requestsHandler
@@ -6,7 +8,11 @@ from configUpdater import update_config, get_config
 
 app = FastAPI()
 
-@app.put("/update_config")
+@app.get("/")
+def redirect_to_site():
+    return RedirectResponse(url="/panel")
+
+@app.put("/api/update_config")
 async def config_update(config_data: Request):
     body = await config_data.body()
     body = json.loads(body)
@@ -16,7 +22,7 @@ async def config_update(config_data: Request):
         print(e)
         raise HTTPException(status_code=500, detail="Error updating config")
 
-@app.get("/get_config")
+@app.get("/api/get_config")
 async def config_get():
     try:
         config = get_config()
@@ -25,7 +31,7 @@ async def config_get():
         raise HTTPException(status_code=500, detail="Error getting config")
     return config
 
-@app.put("/devices/{device_name}")
+@app.put("/api/devices/{device_name}")
 async def update_switch(device_name: str, switch_data: Request):
     body = await switch_data.body()
     body = json.loads(body)
@@ -42,10 +48,12 @@ async def update_switch(device_name: str, switch_data: Request):
     
     return {"success": True}
 
-@app.put("/test/{device_name}")
+@app.put("/api/test/{device_name}")
 async def test_update_switch(device_name: str, data: dict):
     print(f"Received test switch update for {device_name}: {data}")
     return {"success": True}
 
+app.mount("/panel", StaticFiles(directory="dist", html=True), name="static")
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=9999)
+
