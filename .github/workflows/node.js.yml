@@ -21,19 +21,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: pnpm/action-setup@v2
-      with:
-        version: 7
-        working-directory: ./web
+
+    - name: Install pnpm
+      working-directory: ./web
+      run: npm install -g pnpm
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: pnpm
+
     - name: Install dependencies
       working-directory: ./web
-      run: 'pnpm install'
+      run: pnpm install
     
     - name: Build
       working-directory: ./web
-      run: 'pnpm run build'
+      run: pnpm run build
