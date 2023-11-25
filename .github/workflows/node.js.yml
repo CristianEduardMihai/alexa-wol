@@ -8,7 +8,7 @@ on:
   
 defaults:
   run:
-    working-directory: /home/runner/work/alexa-wol/alexa-wol/web
+    working-directory: ./web
 
 jobs:
   build:
@@ -24,15 +24,16 @@ jobs:
     - uses: pnpm/action-setup@v2
       with:
         version: 7
+        working-directory: ./web
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: pnpm
     - name: Install dependencies
-      working-directory: /home/runner/work/alexa-wol/alexa-wol/web
+      working-directory: ./web
       run: 'pnpm install'
     
     - name: Build
-      working-directory: /home/runner/work/alexa-wol/alexa-wol/web
+      working-directory: ./web
       run: 'pnpm run build'
