@@ -9,8 +9,8 @@ on:
   pull_request:
     branches: [ "main" ]
 defaults:
- run:
-  working-directory: ./web
+  run:
+    working-directory: ./web
 
 jobs:
   build:
