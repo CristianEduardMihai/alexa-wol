@@ -10,7 +10,13 @@ export async function getConfig(){
 }
 
 export async function saveConfig(){
-  console.log("TODO Saving Config")
+  console.log(config)
+  return fetch("/api/update_config", 
+    { body: JSON.stringify(config), method: "PUT" })
+}
+
+export function DiscardConfig(){
+  console.log("Config Discarded")
 }
 
 const newDeviceTemplate = {

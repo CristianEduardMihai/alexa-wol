@@ -33,6 +33,9 @@ export function Device({ deviceId }){
 
   let dataIsValid = true
   dataIsValid = IpIsValid(data.ip) && dataIsValid
+  dataIsValid = UdpPortIsValid(data.udp_port) && dataIsValid
+  dataIsValid = WemoPortIsValid(data.wemo_port) && dataIsValid
+  dataIsValid = MacAddressIsValid(data.mac_addr) && dataIsValid
 
   return (
     <div className={`bg-gray-900 p-6 rounded-lg w-full max-w-full border border-2 ${dataIsValid ? 'border-gray-900' : 'border-red-500'}`}>
@@ -77,6 +80,18 @@ export function Device({ deviceId }){
 
 function IpIsValid(ip){
   if(ip.split(".").length !== 4) return false
-  if(ip.split(".").filter((str)=>Number.isInteger(Number(str))).length !== 4) return false
+  if(ip.split(".").filter((str)=>Number.isInteger(Number(str))).length !== 4) return false 
   return true
+}
+
+function UdpPortIsValid(udpPort){
+  return Number.isInteger(Number(udpPort))
+}
+
+function WemoPortIsValid(wemoPort){
+  return Number.isInteger(Number(wemoPort))
+}
+
+function MacAddressIsValid(macAddress){
+  return macAddress.split(":").filter((str)=>!Number.isInteger(Number(str))).length == 0 
 }

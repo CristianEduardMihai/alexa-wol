@@ -53,7 +53,7 @@ async def test_update_switch(device_name: str, data: dict):
     print(f"Received test switch update for {device_name}: {data}")
     return {"success": True}
 
-app.mount("/panel", StaticFiles(directory="dist", html=True), name="static")
+app.mount("/panel", StaticFiles(directory="web", html=True), name="static")
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=9999)
 
