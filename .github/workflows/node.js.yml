@@ -45,10 +45,11 @@ jobs:
       run: pnpm run build
     
     - name: Commit files
+      working-directory: ./api
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add ./api/web/
+        git add ./web/
         git commit -a -m "Build web UI"
     
     - name: Push changes
