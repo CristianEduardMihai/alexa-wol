@@ -12,7 +12,7 @@
                     "on_data": "{\"isOn\": 1}",
                     "off_data": "{\"isOn\": 0}",
                     "method": "PUT",
-                    "name": "Computer",
+                    "name": "Example Device",
                     "use_fake_state": true
                 }
             ]
