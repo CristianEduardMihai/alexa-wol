@@ -1,0 +1,12 @@
+{
+    "poweroff_key": "securitykey",
+    "devices": {
+        "device1": {
+            "name": "Example Device",
+            "ip": "192.168.0.00",
+            "udp_port": 50000,
+            "mac_addr": "00:00:00:00:00:00",
+            "wemo_port": 12340
+        }
+    }
+}
