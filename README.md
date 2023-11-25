@@ -75,30 +75,8 @@ sudo systemctl start fauxmo
 
 ### Configure devices
 
- - Recommended: Change the shutdown password in `api/secrets.json`
-
- - Fill out PC_IP, PC_PORT_NUMBER and PC_MAC_ADD in `api/devices/computer_example.py`. You can add as many devices as you want by copying the file.
-
- - The example device should already be added to `fauxmo/config.json`, for any additional devices you can copy and modify(on_cmd, off_cmd, name) this json example:
- ```json
-    {
-        "port": 12341,
-        "on_cmd": "http://127.0.0.1:9999/devices/DEVICE_FILENAME",
-        "off_cmd": "http://127.0.0.1:9999/devices/DEVICE_FILENAME",
-        "on_data": "{\"isOn\": 1}",
-        "off_data": "{\"isOn\": 0}",
-        "method": "PUT",
-        "name": "DEVICE NAME (SEEN BY ALEXA)",
-        "use_fake_state": true
-    }
- ```
-!! Make sure to add 1 to the `port` section for each device, for example
-
-Device 1: Port 12340
-
-Device 2: Port 12341
-
-Device 3: Port 12342
+ - All configuration is done via the web ui.
+ ![Web UI](images/webui.png)
 
 ### Compile windows binary (CLIENT PC)
 - Download the `windows-binary` folder to your windows PC
