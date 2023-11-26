@@ -4,13 +4,19 @@ on:
   push:
     branches:
       - "main"
+    paths:
+      - 'api/**'
+      - 'web/**'
+      - 'Dockerfile'
+      - 'requirements.txt'
+      - 'run.sh'
 
 jobs:
   wait:
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for 2 minutes # In case webUI is building
-        run: sleep 120
+      - name: Wait for 1 minute # In case webUI is building
+        run: sleep 60
 
   build:
     needs: wait
