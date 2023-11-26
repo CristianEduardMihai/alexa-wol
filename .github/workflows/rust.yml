@@ -49,7 +49,7 @@ jobs:
       run: sudo apt-get install tree
     
     - name: Tree contents of the directory
-      run: tree /home/runner/work/alexa-wol/alexa-wol/windows-binary/
+      run: tree /home/runner/work/alexa-wol/
         
     - name: Upload Release Asset
       id: upload-release-asset
