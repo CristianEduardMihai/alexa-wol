@@ -9,30 +9,27 @@ on:
 
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: ./windows-binary
+
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    
-    - name: Set up Rust
-      run: |
-        rustup self update
-        rustup update
-        rustup target add x86_64-pc-windows-gnu
-      
     - uses: actions/checkout@v3
     - name: Build
       working-directory: ./windows-binary
-      run: cargo build --target x86_64-pc-windows-gnu --release --verbose
+      run: cargo build --release --verbose
 
     - name: Run tests
       working-directory: ./windows-binary
-      run: cargo test --target x86_64-pc-windows-gnu --verbose
+      run: cargo test --verbose
 
     - name: Create Release
       id: create_release
@@ -48,11 +45,6 @@ jobs:
         draft: false
         prerelease: false
     
-    - name: Install tree
-      run: sudo apt-get install tree
-    
-    - name: Tree contents of the directory
-      run: tree /home/runner/work/alexa-wol/
         
     - name: Upload Release Asset
       id: upload-release-asset
@@ -61,6 +53,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/alexa-wol/alexa-wol/windows-binary/target/release/alexa-shutdown.exe
+        asset_path: ./windows-binary/target/release/alexa-shutdown.exe
         asset_name: alexa-shutdown.exe
         asset_content_type: application/x-msdownload
