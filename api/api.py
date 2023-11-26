@@ -5,7 +5,14 @@ from fastapi.responses import JSONResponse
 import uvicorn
 import json
 from requestsHandler import requestsHandler
-from configUpdater import update_config, get_config
+from configUpdater import update_config, get_config, fauxmo_update_on_start
+
+# update fauxmo config on start
+# for volume mounting
+print("Updating fauxmo config...")
+config = get_config()
+fauxmo_update_on_start(config)
+print("Done")
 
 app = FastAPI()
 

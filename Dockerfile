@@ -8,6 +8,9 @@ COPY requirements.txt /alexa
 COPY run.sh /alexa
 COPY LICENSE /alexa
 
+RUN apt-get update -y
+RUN apt-get install procps -y
+
 WORKDIR /alexa
 
 RUN pip3 install -r requirements.txt

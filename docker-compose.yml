@@ -1,9 +1,17 @@
 ---
 version: "3.7"
-services:
+
+volumes:
   alexa-wol:
+    name: alexa-wol
+
+services:
+  alexa:
     image: docker.io/library/test
-    network_mode: host
     container_name: Alexa-WOL
+    restart: unless-stopped
+    network_mode: host
     environment:
       - TZ=Europe/Bucharest
+    volumes:
+      - alexa-wol:/alexa/api/config

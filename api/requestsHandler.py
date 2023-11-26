@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 base_folder = Path(__file__).parent.resolve()
 
-with open(f"{base_folder}/config.json") as f:
+with open(f"{base_folder}/config/config.json") as f:
     config = json.load(f)
 
 offSocket = socket( AF_INET, SOCK_DGRAM )

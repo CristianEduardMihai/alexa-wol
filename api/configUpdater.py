@@ -32,7 +32,7 @@ def generate_fauxmo_config(config):
 
 def update_config(dict):
     print("Updating config...")
-    with open(f"{base_folder}/config.json", "w") as f:
+    with open(f"{base_folder}/config/config.json", "w") as f:
         json.dump(dict, f, indent=4)
     # get fauxmo config
     fauxmo_config = generate_fauxmo_config(dict)
@@ -41,11 +41,16 @@ def update_config(dict):
     with open(f"{base_folder.parent}/fauxmo/config.json", "w") as f:
         json.dump(fauxmo_config, f, indent=4)
     
-    # Restart systemd services
+    # Restart docker container
     import os
-    os.system("reboot")
+    os.system("pkill python3")
+
+def fauxmo_update_on_start(dict):
+    fauxmo_config = generate_fauxmo_config(dict)
+    with open(f"{base_folder.parent}/fauxmo/config.json", "w") as f:
+        json.dump(fauxmo_config, f, indent=4)
 
 def get_config():
-    with open(f"{base_folder}/config.json") as f:
+    with open(f"{base_folder}/config/config.json") as f:
         config = json.load(f)
     return config
