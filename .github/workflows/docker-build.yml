@@ -10,6 +10,7 @@ on:
       - 'Dockerfile'
       - 'requirements.txt'
       - 'run.sh'
+      - '.github/workflows/docker-build.yml'
   
   workflow_dispatch:
 
@@ -39,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm32
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/alexa-wol:latest
