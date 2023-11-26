@@ -7,7 +7,7 @@ volumes:
 
 services:
   alexa:
-    image: docker.io/library/test
+    image: cristianeduardmihai/alexa-wol:latest
     container_name: Alexa-WOL
     restart: unless-stopped
     network_mode: host

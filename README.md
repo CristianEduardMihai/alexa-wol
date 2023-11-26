@@ -1,5 +1,6 @@
 # Alexa-Wake-On-Lan
-## A server program that allows you to turn computers on/off using Alexa services by emulating wemo devices
+## A Fauxmo frontend that facilitates multi-device control via Alexa services by emulating wemo devices, enabling users to turn computers on/off seamlessly using voice commands.
+
 Based on [fauxmo](https://github.com/n8henrie/fauxmo)
 
 ### Requirements:
@@ -8,75 +9,26 @@ Based on [fauxmo](https://github.com/n8henrie/fauxmo)
 - An amazon echo device
 
 ### Installing
-- Clone this repo to your home server
+- Via docker compose:
+```yaml
+---
+version: "3.7"
 
-```bash
-git clone https://github.com/CristianEduardMihai/alexa-wol
-cd alexa-wol
+volumes:
+  alexa-wol:
+    name: alexa-wol
+
+services:
+  alexa:
+    image: cristianeduardmihai/alexa-wol:latest
+    container_name: Alexa-WOL
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Europe/Bucharest
+    volumes:
+      - alexa-wol:/alexa/api/config
 ```
-
-- Install requirements using pip
-```bash
-pip3 install -r requirements.txt
-```
-
-- Create systemd services
-
-Make sure to replace PATH with the root of your install folder(where you cloned the repo). For example, `/home/user/alexa-wol/`
-
-Make sure to replace USER with your current user(not root)
-```bash
-# API service
-printf "Description=Running HOME-API on boot
-
-[Service]
-Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/bin/bash -c 'python3 -u PATH/api/api.py'
-WorkingDirectory=PATH/api
-Restart=always
-User=USER
-[Install]
-WantedBy=multi-user.target" > /lib/systemd/system/api.service
-
-# Fauxmo service
-printf "[Unit]
-Description=Fauxmo
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-Type=simple
-ExecStart=fauxmo -c PATH/fauxmo/config.json -v
-WorkingDirectory=PATH/fauxmo
-Restart=on-failure
-RestartSec=10s
-User=USER
-
-[Install]
-WantedBy=multi-user.target" > /etc/systemd/system/fauxmo.service
-```
-
-- Enable and start services
-```bash
-sudo systemctl enable api
-sudo systemctl enable fauxmo
-
-sudo systemctl start api
-sudo systemctl start fauxmo
-```
-
-- Allow current user to restart services
-```bash
-sudo visudo
-```
-Under `# User privilege specification`, add the following, replace USER with your current non-root user
-```
-USER cms051=/usr/bin/systemctl restart fauxmo.service
-USER cms051=/usr/bin/systemctl restart api.service
-```
-Should look like this:
-
-![Permissions](images/user_permissions.png)
 
 ### Configure devices
 
