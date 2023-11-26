@@ -1,0 +1,9 @@
+---
+version: "3.7"
+services:
+  alexa-wol:
+    image: docker.io/library/test
+    network_mode: host
+    container_name: Alexa-WOL
+    environment:
+      - TZ=Europe/Bucharest

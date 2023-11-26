@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pydantic
+wakeonlan
+sockets
+fauxmo==0.6.0
+uvloop==0.17.0
