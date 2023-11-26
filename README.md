@@ -98,13 +98,8 @@ sudo systemctl start alexa-shutdown
 
 
 ### Add your devices to alexa
-After configuring everything, please restart your services
-```bash
-sudo systemctl restart api
-sudo systemctl restart fauxmo
-```
 
-The, simply say
+Simply say
 `Alexa, discover devices`
 
 Alexa should respons with
