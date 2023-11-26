@@ -93,5 +93,5 @@ function WemoPortIsValid(wemoPort){
 }
 
 function MacAddressIsValid(macAddress){
-  return macAddress.split(":").filter((str)=>!Number.isInteger(Number(str))).length == 0 
+  return true 
 }
