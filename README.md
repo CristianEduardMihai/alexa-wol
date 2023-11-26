@@ -35,7 +35,16 @@ services:
  - All configuration is done via the web ui.
  ![Web UI](images/webui.png)
 
+
+### Download windows executable
+
+!! This only works if you don't change the default power off key
+Download the latest alexa-shutdown.exe from [releases](https://github.com/CristianEduardMihai/alexa-wol/releases/), 
+
 ### Compile windows binary (CLIENT PC)
+
+!! Do this if you have any reasons to not use the default poweroff key
+
 - Download the `windows-binary` folder to your windows PC
 
 - Download [rust](https://www.rust-lang.org/tools/install)
