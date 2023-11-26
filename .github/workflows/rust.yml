@@ -25,7 +25,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       working-directory: ./windows-binary
-      run: cargo build --release --verbose
+      run: cargo build --target x86_64-pc-windows-gnu --release --verbose
 
     - name: Run tests
       working-directory: ./windows-binary
