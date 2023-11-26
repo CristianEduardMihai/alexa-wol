@@ -1,0 +1,29 @@
+name: Build Windows binary
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'windows-binary/**'
+
+defaults:
+  run:
+    working-directory: ./windows-binary
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      working-directory: ./windows-binary
+      run: cargo build --verbose
+    - name: Run tests
+      working-directory: ./windows-binary
+      run: cargo test --verbose
