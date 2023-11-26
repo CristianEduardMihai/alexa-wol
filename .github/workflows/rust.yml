@@ -7,6 +7,8 @@ on:
     paths:
       - 'windows-binary/**'
 
+  workflow_dispatch:
+
 defaults:
   run:
     working-directory: ./windows-binary

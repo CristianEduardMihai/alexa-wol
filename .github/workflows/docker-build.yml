@@ -10,6 +10,8 @@ on:
       - 'Dockerfile'
       - 'requirements.txt'
       - 'run.sh'
+  
+  workflow_dispatch:
 
 jobs:
   wait:

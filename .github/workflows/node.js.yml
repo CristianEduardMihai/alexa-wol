@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - 'web/**'
+  
+  workflow_dispatch:
 
 
   
