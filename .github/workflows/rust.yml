@@ -9,10 +9,6 @@ on:
 
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: ./windows-binary
-
 env:
   CARGO_TERM_COLOR: always
 
