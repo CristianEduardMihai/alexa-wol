@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse 
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import JSONResponse
 import uvicorn
 import json
 from requestsHandler import requestsHandler
@@ -46,7 +47,7 @@ async def update_switch(device_name: str, switch_data: Request):
         #raise HTTPException(status_code=500, detail="Error updating switch state")
         return {"success": False}
     
-    return {"success": True}
+    return JSONResponse(status_code=200, content={"success": True})
 
 @app.put("/api/test/{device_name}")
 async def test_update_switch(device_name: str, data: dict):
@@ -54,6 +55,7 @@ async def test_update_switch(device_name: str, data: dict):
     return {"success": True}
 
 app.mount("/panel", StaticFiles(directory="web", html=True), name="static")
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=9999)
 

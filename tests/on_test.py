@@ -1,6 +1,6 @@
 import requests
 
-url = "http://127.0.0.1:9999/devices/device2"
+url = "http://127.0.0.1:9999/api/devices/device1"
 
 data = {"isOn": 1}
 

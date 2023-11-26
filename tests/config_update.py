@@ -1,6 +1,6 @@
 import requests
 
-url = "http://127.0.0.1:9999/update_config"
+url = "http://127.0.0.1:9999/api/update_config"
 body = {
     "poweroff_key": "securitykey_dsadsasadas",
     "devices": {

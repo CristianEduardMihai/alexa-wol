@@ -17,8 +17,8 @@ def generate_fauxmo_config(config):
     for device_id, device_info in config["devices"].items():
         fauxmo_device = {
             "port": device_info["wemo_port"],
-            "on_cmd": f"http://127.0.0.1:9999/devices/{device_id}",
-            "off_cmd": f"http://127.0.0.1:9999/devices/{device_id}",
+            "on_cmd": f"http://127.0.0.1:9999/api/devices/{device_id}",
+            "off_cmd": f"http://127.0.0.1:9999/api/devices/{device_id}",
             "on_data": '{"isOn": 1}',
             "off_data": '{"isOn": 0}',
             "method": "PUT",
