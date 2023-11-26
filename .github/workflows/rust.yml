@@ -52,6 +52,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./target/release/alexa-shutdown.exe
+        asset_path: ./windows-binary/target/release/alexa-shutdown.exe
         asset_name: alexa-shutdown.exe
         asset_content_type: application/x-msdownload
