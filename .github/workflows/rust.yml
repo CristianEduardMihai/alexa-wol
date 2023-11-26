@@ -44,6 +44,9 @@ jobs:
           - Build Windows binary
         draft: false
         prerelease: false
+    
+    - name: List contents of the directory
+      run: ls /home/runner/work/alexa-wol/alexa-wol/windows-binary/target/release/
         
     - name: Upload Release Asset
       id: upload-release-asset
