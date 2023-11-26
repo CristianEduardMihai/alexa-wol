@@ -22,6 +22,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    - name: Set up Rust
+      run: |
+        rustup self update
+        rustup update
+        rustup target add x86_64-pc-windows-gnu
+      
     - uses: actions/checkout@v3
     - name: Build
       working-directory: ./windows-binary
@@ -29,7 +36,7 @@ jobs:
 
     - name: Run tests
       working-directory: ./windows-binary
-      run: cargo test --verbose
+      run: cargo test --target x86_64-pc-windows-gnu --verbose
 
     - name: Create Release
       id: create_release
