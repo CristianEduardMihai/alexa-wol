@@ -39,9 +39,10 @@ services:
 ### Download windows executable
 
 !! This only works if you don't change the default power off key
+
 Download the latest alexa-shutdown.exe from [releases](https://github.com/CristianEduardMihai/alexa-wol/releases/), 
 
-### Compile windows binary (CLIENT PC)
+### Compile windows executable (CLIENT PC)
 
 !! Do this if you have any reasons to not use the default poweroff key
 
@@ -49,12 +50,15 @@ Download the latest alexa-shutdown.exe from [releases](https://github.com/Cristi
 
 - Download [rust](https://www.rust-lang.org/tools/install)
 
-- Change `poweroff-securitykey` to `poweroff-yourkey`(that you puy in `api/secrets.json` in the previous step)
+- Change `poweroff-securitykey` to `poweroff-yourkey`(that you set via the Web UI)
 
-- Compile by double clicking `compile.bat` or running
+- Compile by running
 ```
-rustc --target=x86_64-pc-windows-msvc --edition=2021 -o alexa_shutdown.exe shutdown.rs --crate-type bin
+cargo build --release
 ```
+
+### Run the executable on boot
+
 - Open the windows run menu and type `shell:startup`
 
 - Place the compiled `alexa_shutdown.exe` in the folder
