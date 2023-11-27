@@ -38,7 +38,7 @@ services:
 ### Configure devices
 
  - All configuration is done via the web ui.
- ![Web UI](images/webui.png)
+ ![Web UI](https://raw.githubusercontent.com/CristianEduardMihai/alexa-wol/main/images/webui.png)
 
 
 ### Download windows executable
