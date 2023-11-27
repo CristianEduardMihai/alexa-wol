@@ -3,6 +3,11 @@
 
 Based on [fauxmo](https://github.com/n8henrie/fauxmo)
 
+### Additional resources
+- [Docker Hub link](https://hub.docker.com/r/cristianeduardmihai/alexa-wol)
+- [Github Link](https://github.com/CristianEduardMihai/alexa-wol)
+- [Install via pi-hosted portainer template](https://pi-hosted.com/)
+
 ### Requirements:
 - At least one computer capable of WOL
 - A home server (could be a raspberry pi) running 24/7
