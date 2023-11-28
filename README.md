@@ -1,5 +1,5 @@
 # Alexa-Wake-On-Lan
-<img style="float: right;" src="https://raw.githubusercontent.com/CristianEduardMihai/alexa-wol/main/images/logo.jpg" height=100>
+<img align="right" width=100 src="https://raw.githubusercontent.com/CristianEduardMihai/alexa-wol/main/images/logo.jpg">
 
 ## A Fauxmo frontend that facilitates multi-device control via Alexa services by emulating wemo devices, enabling users to turn computers on/off seamlessly using voice commands.
 
