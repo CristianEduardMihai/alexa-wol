@@ -119,3 +119,6 @@ After about a minute, alexa should say
 ```
 I have found and connected X new devices
 ```
+
+### Support
+If you have any questions, feel free to ping `@cristianmihai_` on your [support request](https://discord.com/channels/316245914987528193/1050303549327810591) on [Novaspirit's discord](https://discord.gg/v8dAnFV).
