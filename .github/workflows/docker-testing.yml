@@ -1,28 +1,10 @@
 name: Build Docker Test Image
 
 on:
-  push:
-    branches:
-      - "main"
-    paths:
-      - 'api/**'
-      - 'web/**'
-      - 'Dockerfile'
-      - 'requirements.txt'
-      - 'run.sh'
-      - '.github/workflows/docker-testing.yml'
-  
   workflow_dispatch:
 
 jobs:
-  wait:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Wait for 1 minute # In case webUI is building
-        run: sleep 60
-
   build:
-    needs: wait
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
