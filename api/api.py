@@ -17,6 +17,10 @@ config = get_config()
 fauxmo_update_on_start(config)
 print("Done")
 
+debug = config["debug"]
+if debug:
+    print("DEBUG MODE ON")
+
 app = FastAPI()
 
 @app.get("/")
@@ -27,6 +31,9 @@ def redirect_to_site():
 async def config_update(config_data: Request):
     body = await config_data.body()
     body = json.loads(body)
+    if debug == True:
+        print("=========RECEIVED CONFIG UPDATE=========")
+        print(json.dumps(body, indent=4))
     try:
         update_config(body)
     except Exception as e:
@@ -40,6 +47,10 @@ async def config_get():
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Error getting config")
+    
+    if debug == True:
+        print("=========SENDING CONFIG=========")
+        print(json.dumps(config, indent=4))
     return config
 
 @app.put("/api/devices/{device_name}")
@@ -47,8 +58,10 @@ async def update_switch(device_name: str, switch_data: Request):
     body = await switch_data.body()
     body = json.loads(body)
 
-    ##print(body)
-    ##print(device_name)
+    if debug == True:
+        print("=========RECEIVED SWITCH UPDATE=========")
+        print(json.dumps(device_name, indent=4))
+        print(json.dumps(body, indent=4))
 
     try:
         requestsHandler(device_name, body)

@@ -1,5 +1,6 @@
 {
     "poweroff_key": "securitykey",
+    "debug": false,
     "devices": {
         "device1": {
             "name": "Example Device",
