@@ -7,6 +7,9 @@ import json
 from requestsHandler import requestsHandler
 from configUpdater import update_config, get_config, fauxmo_update_on_start
 
+from pathlib import Path
+base_folder = Path(__file__).parent.resolve()
+
 # update fauxmo config on start
 # for volume mounting
 print("Updating fauxmo config...")
@@ -61,7 +64,7 @@ async def test_update_switch(device_name: str, data: dict):
     print(f"Received test switch update for {device_name}: {data}")
     return {"success": True}
 
-app.mount("/panel", StaticFiles(directory="web", html=True), name="static")
+app.mount("/panel", StaticFiles(directory=f"{base_folder}/web", html=True), name="static")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=9999)
