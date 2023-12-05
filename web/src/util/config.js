@@ -1,17 +1,19 @@
+const base_url = import.meta.env.MODE == "development" ? "http://localhost:9999" : ""
+
 let config = {
   devices: [],
   poweroff_key: ""
 }
 
 export async function getConfig(){
-  const data = await fetch("/api/get_config")
+  const data = await fetch(`${base_url}/api/get_config`)
   const json = await data.json()
   config = json
 }
 
 export async function saveConfig(){
   console.log(config)
-  return fetch("/api/update_config", 
+  return fetch(`${base_url}/api/update_config`, 
     { body: JSON.stringify(config), method: "PUT" })
 }
 

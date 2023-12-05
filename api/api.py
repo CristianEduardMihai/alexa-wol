@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse 
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import json
 from requestsHandler import requestsHandler
@@ -18,10 +19,22 @@ fauxmo_update_on_start(config)
 print("Done")
 
 debug = config["debug"]
+app = FastAPI()
+
 if debug:
     print("DEBUG MODE ON")
 
-app = FastAPI()
+    print("DISSABLING CORS POLICY")
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["http://localhost:5500"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+
 
 @app.get("/")
 def redirect_to_site():
