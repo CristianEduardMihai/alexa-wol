@@ -36,12 +36,12 @@ export function Settings(){
             try {
               await saveConfig()
               setButtonState(ButtonStates.saved)
+              setTimeout(()=>{
+                location.reload()
+              }, 2000)
             } catch {
               setButtonState(ButtonStates.save)
             }
-            setTimeout(()=>{
-              setButtonState(ButtonStates.save)
-            }, 3000)
           }}
         /> 
         <Button type={ButtonTypes.secondary} 

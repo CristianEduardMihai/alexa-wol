@@ -50,6 +50,11 @@ export function updateDevice(id, value){
   config['devices'][id] = value
 }
 
+export function deleteDevice(deviceId){
+  console.log("Deleting device", deviceId)
+  delete config['devices'][deviceId]
+}
+
 export function getPowerOffKey(){
   return config['poweroff_key']
 }

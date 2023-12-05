@@ -1,12 +1,19 @@
 import powerOnSVG from '../assets/powerOn.svg'
 import powerOffSVG from '../assets/powerOff.svg'
-import {useState} from 'react'
-import { getDevice, updateDevice } from '../util/config'
+import deleteSVG from '../assets/delete.svg'
+import { useState } from 'react'
+import { getDevice, updateDevice, deleteDevice } from '../util/config'
 
 export function Device({ deviceId }){
+  const [isDeleted, setIsDeleted] = useState(false)
   const [data, updateData] = useState(getDevice(deviceId))
 
-  updateDevice(deviceId, data)
+  if(!isDeleted) updateDevice(deviceId, data)
+  
+  const del = () =>{
+    deleteDevice(deviceId)
+    setIsDeleted(true)
+  }
 
   const INPUT_FIELDS = [
     {
@@ -38,7 +45,7 @@ export function Device({ deviceId }){
   dataIsValid = MacAddressIsValid(data.mac_addr) && dataIsValid
 
   return (
-    <div className={`bg-gray-900 p-6 rounded-lg w-full max-w-full border border-2 ${dataIsValid ? 'border-gray-900' : 'border-red-500'}`}>
+    <div className={`flex flex-row gap-3 bg-gray-900 p-6 rounded-lg w-full max-w-full border border-2 ${dataIsValid ? 'border-gray-900' : 'border-red-500'} ${isDeleted ? "opacity-40" : ""}`}>
       <div className="grid grid-cols-[1fr] md:grid-cols-[8rem_1fr_1fr] gap-3 w-full">
         <div className="h-full flex items-center justify-center p-7 md:p-4 row-span-3 md:pr-6">
           <img src={powerOnSVG} className=''/>
@@ -73,7 +80,12 @@ export function Device({ deviceId }){
               )
             })
           }
-      </div>
+        </div>
+      <button 
+        onClick={del}
+        className='flex items-center p-4 outline outline-[1px] outline-gray-500 rounded'>
+        <img src={deleteSVG}/>
+      </button>
     </div>
   )
 }
