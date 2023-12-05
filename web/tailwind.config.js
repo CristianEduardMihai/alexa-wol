@@ -12,6 +12,9 @@ export default {
         'gray-500': '#282D33',
         'gray-200': '#444D54',
         'primary': '#069ED0'
+      },
+      borderRadius: {
+        'lg': "1rem"
       }
     },
   },

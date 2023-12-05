@@ -30,11 +30,11 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col pb-10 md:pb-0 md:flex-row h-screen bg-background">
-      <div className="h-full md:w-7/12">
+    <div className="flex flex-col lg:flex-row h-screen overflow-x-scroll md:overflow-hidden bg-background">
+      <div className="h-full lg:w-8/12">
         <DeviceList />
       </div>
-      <div className="md:w-5/12">
+      <div className="lg:w-4/12">
         <Settings/> 
       </div>
     </div>   

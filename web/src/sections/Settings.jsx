@@ -13,9 +13,9 @@ export function Settings(){
         <h2 className="text-xl font-medium">Settings</h2>
         <div className="flex flex-col gap-4 bg-gray-900 rounded-lg p-6">
           <p className="whitespace-nowrap">Power Off Key</p>
-          <div className='outline outline-[1px] outline-gray-500 rounded'>
+          <div className='flex outline outline-[1px] outline-gray-500 rounded pr-4'>
             <input 
-              className='p-2'
+              className='w-full p-2'
               defaultValue={getPowerOffKey()}
               onChange={({target: { value }})=>{
                 setPowerOffKey(value)
