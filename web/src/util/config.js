@@ -22,10 +22,10 @@ export function DiscardConfig(){
 }
 
 const newDeviceTemplate = {
-    "name": "Computer",
+    "name": "Name",
     "ip": "192.168.0.1",
-    "udp_port": 0,
-    "mac_addr": "00:00:00:69:00:00",
+    "udp_port": 50000,
+    "mac_addr": "00:00:00:00:00:00",
     "wemo_port": 12340
 }
 
