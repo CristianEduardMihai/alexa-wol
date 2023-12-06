@@ -2,16 +2,6 @@ import json
 from pathlib import Path
 base_folder = Path(__file__).parent.resolve()
 
-def re_id_devices(config):
-    new_config = {}
-    counter = 1
-    for device in config["devices"].items():
-        new_device_id = f"device{counter}"
-        new_config[new_device_id] = device[1]
-        counter += 1
-    config["devices"] = new_config
-    return config
-
 def generate_fauxmo_config(config):
     fauxmo_config = {
         "FAUXMO": {
@@ -42,7 +32,6 @@ def generate_fauxmo_config(config):
 
 def update_config(dict):
     print("Updating config...")
-    dict = re_id_devices(dict)
     with open(f"{base_folder}/config/config.json", "w") as f:
         json.dump(dict, f, indent=4)
     # get fauxmo config
