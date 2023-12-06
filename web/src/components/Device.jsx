@@ -4,7 +4,7 @@ import deleteSVG from '../assets/delete.svg'
 import { useState } from 'react'
 import { getDevice, updateDevice, deleteDevice } from '../util/config'
 
-export function Device({ deviceId }){
+export function Device({ deviceId, refreshDeviceList }){
   const [isDeleted, setIsDeleted] = useState(false)
   const [data, updateData] = useState(getDevice(deviceId))
 
@@ -13,6 +13,7 @@ export function Device({ deviceId }){
   const del = () =>{
     deleteDevice(deviceId)
     setIsDeleted(true)
+    refreshDeviceList()
   }
 
   const INPUT_FIELDS = [

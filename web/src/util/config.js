@@ -19,6 +19,7 @@ export async function saveConfig(){
 
 export function DiscardConfig(){
   console.log("Config Discarded")
+  location.reload()
 }
 
 const newDeviceTemplate = {
@@ -34,11 +35,28 @@ export function getDeviceIds(){
   return [...Object.keys(config['devices'] || {})]
 }
 
+function getMissingId(){
+  let ids = []
+  Object.keys(config['devices']).forEach((id)=>{
+    ids.push(parseInt(id.slice(6)))
+  })
+  
+  ids = ids.sort((a, b)=> a - b)
+
+  if(ids[0] !== 1) return 1
+
+  for (let i = 0; i < ids.length -1; i++){
+    if(ids[i+1] - ids[i] > 1) return (ids[i] + 1)
+  }
+
+  return ids[ids.length-1] + 1
+}
+
 export function addDevice(){
   const newDevice = {...newDeviceTemplate}
-  newDevice.wemo_port += Object.keys(config.devices).length
+  newDevice.wemo_port += getMissingId() - 1
   
-  config['devices'][`device${Object.keys(config.devices).length + 1}`] = newDevice
+  config['devices'][`device${getMissingId()}`] = newDevice
 }
 
 export function getDevice(id){
