@@ -39,7 +39,7 @@ services:
 
 ### Configure devices
 
- - All configuration is done via the web ui.
+ - All configuration is done via the web UI. Additional software needs to be installed on all client PCs, see below.
  ![Web UI](https://raw.githubusercontent.com/CristianEduardMihai/alexa-wol/main/images/webui.png)
 
 
