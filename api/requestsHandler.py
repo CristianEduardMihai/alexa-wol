@@ -4,6 +4,27 @@ import json
 from pathlib import Path
 base_folder = Path(__file__).parent.resolve()
 
+example_config = {
+    "poweroff_key": "securitykey",
+    "debug": False,
+    "devices": {
+        "device1": {
+            "name": "Example Device",
+            "ip": "192.168.0.00",
+            "udp_port": 50000,
+            "mac_addr": "00:00:00:00:00:00",
+            "wemo_port": 12340
+        }
+    }
+}
+
+# If config.json doesn't exist, create it
+if not Path(f"{base_folder}/config/config.json").exists():
+    print("Creating config.json...")
+    with open(f"{base_folder}/config/config.json", "w") as f:
+        json.dump(example_config, f, indent=4)
+    print("Done")
+
 with open(f"{base_folder}/config/config.json") as f:
     config = json.load(f)
 
