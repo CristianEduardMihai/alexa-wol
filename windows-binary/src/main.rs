@@ -8,6 +8,8 @@ use std::process::Command;
 extern crate winapi;
 use winapi::um::winuser::{MessageBoxA, MB_OKCANCEL, MB_ICONEXCLAMATION, HWND_DESKTOP};
 
+const POWEROFF_KEY: &str = "poweroff-securitykey";
+
 fn main() -> io::Result<()> {
     // Setting up UDP socket
     let socket = UdpSocket::bind("0.0.0.0:50000").expect("Could not bind socket");
@@ -19,7 +21,7 @@ fn main() -> io::Result<()> {
         match socket.recv_from(&mut buf) {
             Ok((size, _)) => {
                 let received = String::from_utf8_lossy(&buf[..size]);
-                if received.trim() == "poweroff-securitykey" {
+                if received.trim() == POWEROFF_KEY {
                     show_popup()?;
                 }
             },
@@ -41,10 +43,11 @@ fn show_popup() -> io::Result<()> {
     println!("Shutting down in 10 seconds");
 
     let message = "Your computer will shut down in 10 seconds. Press OK to proceed or Cancel to abort.";
+    let title = "Remote Shutdown Warning";
     let message_ansi = std::ffi::CString::new(message).expect("CString::new failed");
+    let title_ansi = std::ffi::CString::new(title).expect("CString::new failed");
     unsafe {
-        
-        let result = MessageBoxA(HWND_DESKTOP, message_ansi.as_ptr(), message_ansi.as_ptr(), MB_OKCANCEL | MB_ICONEXCLAMATION);
+        let result = MessageBoxA(HWND_DESKTOP, message_ansi.as_ptr(), title_ansi.as_ptr(), MB_OKCANCEL | MB_ICONEXCLAMATION);
         
         if result == 2 {
             println!("Shutdown cancelled.");
