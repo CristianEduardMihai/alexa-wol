@@ -1,4 +1,4 @@
-//#![windows_subsystem = "windows"]
+#![windows_subsystem = "windows"]
 use std::net::UdpSocket;
 use std::time::Duration;
 use std::thread;
