@@ -57,7 +57,7 @@ Download the latest alexa-shutdown.exe from [releases](https://github.com/Cristi
 
 - Download [rust](https://www.rust-lang.org/tools/install)
 
-- Change `poweroff-securitykey` to `poweroff-yourkey`(that you set via the Web UI)
+- Change `poweroff-securitykey` (line 11 in [main.rs](windows-binary/src/main.rs)) to `poweroff-yourkey`(that you set via the Web UI)
 
 - Compile by running
 ```
