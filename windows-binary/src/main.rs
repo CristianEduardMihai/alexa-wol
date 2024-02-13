@@ -1,9 +1,10 @@
 #![windows_subsystem = "windows"]
+use winapi::um::winuser::MB_SYSTEMMODAL;
+use std::process::Command;
 use std::net::UdpSocket;
 use std::time::Duration;
 use std::thread;
 use std::io;
-use std::process::Command;
 
 extern crate winapi;
 use winapi::um::winuser::{MessageBoxA, MB_OKCANCEL, MB_ICONEXCLAMATION, HWND_DESKTOP};
@@ -47,7 +48,7 @@ fn show_popup() -> io::Result<()> {
     let message_ansi = std::ffi::CString::new(message).expect("CString::new failed");
     let title_ansi = std::ffi::CString::new(title).expect("CString::new failed");
     unsafe {
-        let result = MessageBoxA(HWND_DESKTOP, message_ansi.as_ptr(), title_ansi.as_ptr(), MB_OKCANCEL | MB_ICONEXCLAMATION);
+        let result = MessageBoxA(HWND_DESKTOP, message_ansi.as_ptr(), title_ansi.as_ptr(), MB_OKCANCEL | MB_ICONEXCLAMATION | MB_SYSTEMMODAL);
         
         if result == 2 {
             println!("Shutdown cancelled.");
