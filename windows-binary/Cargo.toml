@@ -6,3 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+winapi = { version = "0.3", features = ["winuser", "minwindef", "winbase", "winreg", "winnt"] }
+socket2 = "0.3.17"
